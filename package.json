@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "react-icons": "^4.7.1",
     "sequelize": "^6.29.0"
   }
 }

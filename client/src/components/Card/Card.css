@@ -1,3 +1,44 @@
-.img{
-    height: 100px;
+.contenedor-general-card{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    width: 400px;
+    height: fit-content;
+    text-align: center;
 }
+
+.img{
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    border: 4px solid #000000;
+    border-radius: 50%;
+    margin-top: 20px;
+}
+
+.titulo{
+    display: flex;
+    flex-direction: column;
+    font-size: 23px;
+    margin-top: -30px;
+}
+.nombre{
+    display: flex;
+    flex-direction: column;
+    font-size: 23px;
+    margin-top: -50px;
+}
+.generos{
+    display: flex;
+    flex-direction: column;
+    margin-top: -30px; 
+}
+
+.fondo-card{
+    background-color: rgba(130, 130, 148, 0.733);
+    border-radius: 30px;
+    height: 500px;
+    border: rgb(221, 13, 13) solid 5px 
+}
+
+

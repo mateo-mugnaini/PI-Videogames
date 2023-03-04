@@ -9,16 +9,21 @@ export default function LandingPage() {
   return (
     <div className="container-LandingPage">
       <div className="container-Textos">
-        <div className="container-Text">
-          <div>
-            <Link className="botonIngreso" to={"/home"}>
-              <h1> Bienvenidos </h1>
-            </Link>
-          </div>
-          <div className="texto-Landing">
-            <h1> API VIDEOGAMES </h1>
+        <div className="btn">
+          <Link className="botonIngreso" to={"/home"}>
+            <h1> start </h1>
+          </Link>
+        </div>
+        <div className="texto-Landing">
+          <h1> VIDEOGAMES </h1>
+          <a
+            className="link"
+            href="https://www.linkedin.com/in/mateo-mugnaini"
+            target="_blank"
+            rel="noreferrer"
+          >
             <h2> By Mateo Mugnaini </h2>
-          </div>
+          </a>
         </div>
       </div>
     </div>

@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Neonderthaw&family=Roboto:wght@100;300;500;900&family=Rubik+Bubbles&family=Shadows+Into+Light&display=swap');
+
+
+.container-LandingPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image:url(https://wallpapercave.com/wp/wp5129873.jpg);
+    background-size:cover;
+    background-position: center;
+    /* background-color: black; */
+    height: 100vh;
+    color: aliceblue;
+    font-family: "Press Start 2P";
+    
+}
+.link{
+    display: flex;
+    text-decoration: none;
+    color: aliceblue;
+}
+.botonIngreso{
+    display: flex;
+    text-decoration: none;
+    font-size: 25px;
+    font-weight: 800;
+    padding: 10px 20px;
+    font-size: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    text-shadow: 0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 15px #fff,
+                0 0 10px #ff00de,
+                0 0 35px #ff00de,
+                0 0 40px #ff00de, 
+                0 0 50px #ff00de;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    /* transition: all 0.2 step-start; */
+    animation: fadein 1s infinite alternate;
+    -webkit-animation: fadein 1s infinite alternate;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+.texto-Landing{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
+}

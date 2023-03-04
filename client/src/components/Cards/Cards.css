@@ -1,0 +1,25 @@
+
+.contenedor-cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    /* margin-top: 250px; */
+}
+
+.contenedor-paginado{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 300px;
+}
+
+.btnPag{
+    font-size: 20px;
+    border: solid rgb(255, 0, 0) 2px;
+    background-color:  rgba(0, 0, 0, 0.648) ;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+    color: aliceblue;
+}

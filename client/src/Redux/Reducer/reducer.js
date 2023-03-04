@@ -39,7 +39,7 @@ export default function rootReducer(state = initialState, action) {
   if (action.type === GET_DETAIL) {
     return {
       ...state,
-      videogame: action.payload[0],
+      videogame: action.payload,
     };
   }
 }

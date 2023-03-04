@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Press+Start+2P&display=swap');
+
+.contenedor-search{
+    display: flex;
+    margin-top: 20px;
+    border: red 4px solid;
+}
+
+.searchbar{
+    /* border: white 2px solid; */
+    border: none;
+    background-color: rgba(240, 248, 255, 0);
+    height: 35px;
+    width: 300px;
+}
+
+.searchbar::placeholder{
+    color:aliceblue;
+    margin-left: 100px;
+}
+
+.botonSearch{
+    color: rgb(0, 0, 0);
+    font-family: "Press Start 2P";
+    font-size: 10px;
+    border: none;
+    /* border: white 3px solid; */
+    background-color: aliceblue;
+    height: 35px;
+    width: 100px;
+}

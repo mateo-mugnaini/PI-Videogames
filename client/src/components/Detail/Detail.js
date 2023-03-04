@@ -4,19 +4,22 @@ import { useParams } from "react-router-dom";
 import { getDetail } from "../../Redux/Actions/actions";
 import "../Detail/Detail.css";
 
-function Detail({ getDetail, videojuego }) {
+function Detail(props) {
+  const { getDetail, videojuego } = props;
   const { idVideojuegos } = useParams();
 
   useEffect(() => {
     getDetail(idVideojuegos);
-  }, [idVideojuegos, getDetail]);
+    console.log(idVideojuegos);
+  }, []);
 
   useEffect(() => {
-    console.log(videojuego);
-  }, [videojuego]);
+    console.log(props);
+  }, [props]);
 
   return (
-    <div className="contenedor-general">
+    <div className="contenedor-general-detalle">
+      //
       {videojuego && (
         <div className="contenedor-Textos-Detalle">
           {/* NOMBRE */}
@@ -35,7 +38,7 @@ function Detail({ getDetail, videojuego }) {
 
 function mapStateToProps(state) {
   return {
-    videojuego: state?.videojuego,
+    videojuego: state?.videogame,
   };
 }
 

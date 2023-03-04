@@ -17,11 +17,15 @@ router.get("/", async (req, res) => {
   const { name } = req.query;
   if (name) {
     try {
-      const response = await axios.get(
-        `https://api.rawg.io/api/games?search=${name}&key=${APIKEY}`
-      );
+      const apiVideoGames = [];
+      let url = `https://api.rawg.io/api/games?search=${name}&key=${APIKEY}`;
+      for (let index = 0; index < 5; index++) {
+        const response = await axios.get(url);
 
-      const apiVideoGames = response.data.results;
+        response.data?.results.forEach((game) => apiVideoGames.push(game));
+
+        url = response.data.next;
+      }
 
       const dataBaseVideoGames = await Videogame.findAll({
         where: {
@@ -42,10 +46,18 @@ router.get("/", async (req, res) => {
       attributes: ["name", "image"],
       include: Gender,
     });
-    const response = await axios.get(
-      `https://api.rawg.io/api/games?key=${APIKEY}`
-    );
-    const apiVideoGames = response.data.results;
+
+    const apiVideoGames = [];
+    let url = `http://api.rawg.io/api/games?key=${APIKEY}`;
+    for (let index = 0; index < 5; index++) {
+      const response = await axios.get(url);
+
+      response.data?.results.forEach((game) => apiVideoGames.push(game));
+
+      url = response.data.next;
+    }
+
+    console.log("AAA", apiVideoGames.length);
 
     const allVideogames = [...apiVideoGames, ...dataBaseVideoGames];
     res.send(allVideogames);
@@ -82,16 +94,16 @@ router.post("/", async function (req, res) {
     req.body;
 
   const idFecha = new Date();
-  console.log(
-    "aaaa",
-    name,
-    image,
-    description,
-    platform,
-    released,
-    rating,
-    gender
-  );
+  // console.log(
+  //   "aaaa",
+  //   name,
+  //   image,
+  //   description,
+  //   platform,
+  //   released,
+  //   rating,
+  //   gender
+  // );
   const juegos = await Videogame.create({
     name: name,
     image: image,

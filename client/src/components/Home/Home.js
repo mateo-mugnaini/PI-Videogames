@@ -10,7 +10,7 @@ function Home(props) {
     if (!props.filtered) props.getGames();
   }, []);
   return (
-    <div className="conteiner-home">
+    <div className="contenedor-home">
       <div className="card-home">
         <Cards />
       </div>

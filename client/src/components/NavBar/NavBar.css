@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Press+Start+2P&display=swap');
+
+.contenedor-navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    position: absolute;
+    width: 100%;
+    background: linear-gradient(180deg, rgb(0, 0, 0), transparent);
+}
+
+.btn-NV{
+    text-decoration: none;
+    color: azure;
+    font-size: 20px;
+    font-family: "Press Start 2P";
+    position: relative;
+    top: 12px;
+}
+
+.btn-NV-Exit{
+    position: relative;
+    top: 12px;
+    text-decoration: none;
+    color: rgb(255, 0, 0);
+    font-size: 20px;
+    font-family: "Press Start 2P";
+}

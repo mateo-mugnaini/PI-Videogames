@@ -16,17 +16,11 @@
     margin-top: 20px;
 }
 
-.titulo{
-    display: flex;
-    flex-direction: column;
-    font-size: 23px;
-    margin-top: -30px;
-}
 .nombre{
     display: flex;
     flex-direction: column;
-    font-size: 23px;
-    margin-top: -50px;
+    font-size: 25px;
+    /* margin-top: -40px; */
 }
 .generos{
     display: flex;

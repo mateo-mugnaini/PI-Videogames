@@ -1,3 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Press+Start+2P&display=swap');
+
 .contenedor-general-detalle{
-    background-color: aqua;
+display: flex;
+flex-direction: row;
+background: url('https://rare-gallery.com/mocahbig/33242-Gamer-4k-Ultra-HD-Wallpaper.jpg') ;
+background-size: cover;
+height: 100vh;
+color: aliceblue;
+}
+/* NOMBRE */
+.contenedor-titulo{
+    position: absolute;
+    left: 50px;
+    top: 100px;
+}
+
+.titulo-detalle{
+    font-family: "Press Start 2P";
+}
+
+.nombre-detalle{
+    position: relative;
+    bottom: 40px;
+    left: 250px;
+}
+
+/* PLATAFORMAS */
+.contenedor-plataformas{
+    position: absolute;
+    left: 50px;
+    top: 150px;
+}
+
+.plataformas-detalle{
+    position: relative;
+    top: 20px;
+    left: 10px;
+    width: 319px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+/* RATING */
+.contenedor-rating{
+    position: absolute;
+    left: 50px;
+    top: 250px;
+}
+
+.rating-detalle{
+    position: relative;
+    bottom: 50px;
+    left: 150px;
+}
+
+/* GENEROS */
+.contenedor-generos{
+    position: absolute;
+    left: 50px;
+    top: 300px;
+}
+
+.generos-detalle{
+    position: relative;
+    left: 10px;
+    bottom: 10px;
+    width: 319px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+/* DESCRIPTION */
+.contenedor-descripcion{
+    position: absolute;
+    left: 50px;
+    top: 350px;
+}
+
+.generos-detalle{
+    width: 319px;
+    display: flex;
+    align-items: end;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+/* IMAGEN */
+.imgDetalle{
+    position: relative;
+    top:100px;
+    left: 900px;
+    border: red 5px solid;
+    border-radius: 30px;
+    height: 300px;
+    width: 600px;
+    object-fit: cover;
 }

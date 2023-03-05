@@ -1,12 +1,14 @@
+/* ----------------------------------IMPORTS---------------------------------- */
+
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-// import { getGenders } from "../../Redux/Actions/actions";
 import { getGenres, getGames } from "../../Redux/Actions/actions";
 import axios from "axios";
 import "../CreateGame/CreateGame.css";
 
+/* ----------------------------------FUNCTION---------------------------------- */
 function CreateGame(props) {
-  /* USESTATE */
+  /* ----------------------------------USESTATE---------------------------------- */
   const [generos, setGeneros] = useState();
   const [plataformas, setPlataformas] = useState([]);
 
@@ -42,7 +44,8 @@ function CreateGame(props) {
     setGeneros(props.genres);
   }, [props.genres]);
 
-  /* HANDLESELECTGENRES */
+  /* ----------------------------------PLATFORMS----------------------------------*/
+  /* ----------------------------------HANDLESELECT---------------------------------- */
   function handleSelectPlatforms(e) {
     setInputs({
       ...inputs,
@@ -53,7 +56,27 @@ function CreateGame(props) {
 
     setPlataformas(plataformasNuevos);
   }
-  /* HANDLESELECTGENRES */
+
+  /*----------------------------------HANDLEDELETE----------------------------------*/
+  function handleDeletePlatforms(e) {
+    e.preventDefault();
+    const deletePlatforms = inputs.platforms.filter((c) => c !== e.target.name);
+    setInputs({
+      ...inputs,
+      platforms: deletePlatforms,
+    });
+    const deletedPlatform = platformList.filter((el) => el === e.target.name);
+    console.log(e.target.name, deletedPlatform);
+    setPlataformas([...plataformas, ...deletedPlatform]);
+  }
+
+  useEffect(() => {
+    props.getGenres();
+    setPlataformas(platformList);
+  }, []);
+
+  /* ----------------------------------GENRES----------------------------------*/
+  /* ----------------------------------HANDLESELECTGENRES---------------------------------- */
   function handleSelectGenres(e) {
     const filterName = props.genres.filter(
       (c) => c.id.toString() === e.target.value
@@ -73,7 +96,27 @@ function CreateGame(props) {
     setGeneros(generosNuevos);
   }
 
-  /* HANDLECHANGE */
+  /*----------------------------------HANDLEDELETE----------------------------------*/
+
+  function handleDeleteGenres(e) {
+    e.preventDefault();
+    const deleteGenres = inputs.genreName.filter((c) => c !== e.target.name);
+    setInputs({
+      ...inputs,
+      genreName: deleteGenres,
+    });
+    const deletedGenre = props.genres.filter((el) => el.name === e.target.name);
+    setGeneros([...generos, ...deletedGenre]);
+  }
+
+  const inputImagen = document.getElementById("imagen");
+  const vistaPrevia = document.getElementById("vista-previa");
+
+  inputImagen?.addEventListener("input", () => {
+    vistaPrevia.src = inputImagen.value;
+  });
+
+  /* ----------------------------------HANDLECHANGE---------------------------------- */
   function handleChange(e) {
     setInputs({
       ...inputs,
@@ -81,11 +124,10 @@ function CreateGame(props) {
     });
   }
 
-  /* SUBMIT */
+  /* ----------------------------------ON SUBMIT---------------------------------- */
   async function onSubmit(e) {
     e.preventDefault();
 
-    // Verificar si los parámetros están vacíos
     if (!inputs.nombre) {
       return window.alert("El campo 'nombre' está vacío");
     }
@@ -114,7 +156,6 @@ function CreateGame(props) {
       return window.alert("Debe seleccionar al menos un género");
     }
 
-    // Si todos los parámetros están presentes, enviar el formulario
     const formData = {
       nombre: inputs.nombre,
       imagen: inputs.imagen,
@@ -129,44 +170,11 @@ function CreateGame(props) {
     window.location.href = "http://localhost:3000/home";
   }
 
-  /*HANDLEDELETE*/
-  function handleDeletePlatforms(e) {
-    e.preventDefault();
-    const deletePlatforms = inputs.platforms.filter((c) => c !== e.target.name);
-    setInputs({
-      ...inputs,
-      platforms: deletePlatforms,
-    });
-    const deletedPlatform = platformList.filter((el) => el === e.target.name);
-    console.log(e.target.name, deletedPlatform);
-    setPlataformas([...plataformas, ...deletedPlatform]);
-  }
-
-  useEffect(() => {
-    props.getGenres();
-    setPlataformas(platformList);
-  }, []);
-
-  function handleDeleteGenres(e) {
-    e.preventDefault();
-    const deleteGenres = inputs.genreName.filter((c) => c !== e.target.name);
-    setInputs({
-      ...inputs,
-      genreName: deleteGenres,
-    });
-    const deletedGenre = props.genres.filter((el) => el.name === e.target.name);
-    setGeneros([...generos, ...deletedGenre]);
-  }
-
-  const inputImagen = document.getElementById("imagen");
-  const vistaPrevia = document.getElementById("vista-previa");
-
-  inputImagen?.addEventListener("input", () => {
-    vistaPrevia.src = inputImagen.value;
-  });
-
+  /* ----------------------------------RETURN---------------------------------- */
   return (
+    /* ----------------------------------CONTENEDOR GENERAL---------------------------------- */
     <div className="contenedor-general-formulario">
+      {/* ----------------------------------TEXTOS---------------------------------- */}
       <div className="contenedor-textos-head">
         <div className="titulo-create">
           <h1>Create your game</h1>
@@ -181,8 +189,10 @@ function CreateGame(props) {
         </div>
       </div>
       <div>
+        {/* ----------------------------------FORMULARIO---------------------------------- */}
         <form className="contenedor-formulario" onSubmit={(e) => onSubmit(e)}>
           <div className="formulario-fondo">
+            {/* ----------------------------------NOMBRE---------------------------------- */}
             <div className="formulario">
               <label className="formulario-label"> Nombre: </label>
               <input
@@ -194,6 +204,7 @@ function CreateGame(props) {
                 required
               />
             </div>
+            {/* ----------------------------------IMAGEN---------------------------------- */}
             <div className="formulario">
               <label className="formulario-label"> Imagen: </label>
               <input
@@ -206,6 +217,7 @@ function CreateGame(props) {
                 required
               />
             </div>
+            {/* ----------------------------------DESCRIPCION---------------------------------- */}
             <div className="formulario">
               <label className="formulario-label"> Descripcion: </label>
               <textarea
@@ -216,6 +228,7 @@ function CreateGame(props) {
                 required
               />
             </div>
+            {/* ----------------------------------PLATAFORMA---------------------------------- */}
             <div className="formulario">
               <label className="formulario-label"> Plataformas: </label>
               <select
@@ -233,6 +246,7 @@ function CreateGame(props) {
                   ))}
               </select>
             </div>
+            {/* ----------------------------------FECHA DE LANZAMIENTO---------------------------------- */}
             <div className="formulario">
               <label className="formulario-label">Fecha de lanzamiento:</label>
               <input
@@ -243,6 +257,7 @@ function CreateGame(props) {
                 required
               />
             </div>
+            {/* ----------------------------------RATING---------------------------------- */}
             <div className="formulario">
               <label className="formulario-label">Rating:</label>
               <input
@@ -254,6 +269,7 @@ function CreateGame(props) {
                 required
               />
             </div>
+            {/* ----------------------------------GENREROS---------------------------------- */}
             <div className="formulario">
               <label className="formulario-label">Generos</label>
               <select
@@ -270,10 +286,12 @@ function CreateGame(props) {
                   ))}
               </select>
             </div>
+            {/* ----------------------------------BOTON CREAR---------------------------------- */}
             <div className="boton">
               <input className="boton-crear" type="submit" value="Crear!" />
             </div>
           </div>
+          {/* ----------------------------------VISTA PREVIA IMAGEN---------------------------------- */}
           <div className="formulario-imagen-muestra">
             <img
               className="vista-previa-imagen"
@@ -282,11 +300,13 @@ function CreateGame(props) {
               alt="Vista previa de la imagen"
             />
           </div>
+          {/* ----------------------------------VER GENEROS---------------------------------- */}
           <div className="contenedor-generos">
             <div className="opciones-generos">
               {inputs.genreName.length > 0 &&
                 inputs.genreName.map((c) => (
                   <div className="generos-seleccionado">
+                    {/* /* ----------------------------------BOTON BORRAR GENERO----------------------------------  */}
                     <button
                       className="boton-generos"
                       name={c}
@@ -299,11 +319,13 @@ function CreateGame(props) {
                 ))}
             </div>
           </div>
+          {/* ----------------------------------VER PLATAFORMAS---------------------------------- */}
           <div className="contenedor-plataformas">
             <div className="opciones-plataformas">
               {inputs.platforms.length > 0 &&
                 inputs.platforms.map((c) => (
                   <div className="plataformas-seleccionadas">
+                    {/* ----------------------------------BOTON BORRAR PLATAFORMAS----------------------------------  */}
                     <button
                       className="boton-plastaforma"
                       name={c}
@@ -321,7 +343,8 @@ function CreateGame(props) {
     </div>
   );
 }
-/* MAPSTATETOPROPS */
+
+/* ----------------------------------MAPSTATETOPROPS---------------------------------- */
 function mapStateToProps(state) {
   return {
     videogames: state?.videogames,

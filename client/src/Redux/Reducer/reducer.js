@@ -42,4 +42,37 @@ export default function rootReducer(state = initialState, action) {
       videogame: action.payload,
     };
   }
+
+  if (action.type === ORDER_BY_NAME) {
+    const allGames = [...state.videogames];
+
+    allGames.sort((a, b) => {
+      let ordenA = a.name ? a.name.toUpperCase() : "";
+      let ordenB = b.name ? b.name.toUpperCase() : "";
+
+      if (action.payload === "A-Z") {
+        if (ordenA === ordenB) {
+          return 0;
+        } else if (ordenA < ordenB) {
+          return -1;
+        }
+        return 1;
+      }
+      if (action.payload === "Z-A") {
+        if (ordenA === ordenB) {
+          return 0;
+        } else if (ordenA < ordenB) {
+          return 1;
+        }
+        return -1;
+      }
+    });
+    return {
+      ...state,
+      videogames: allGames,
+      filtered: true,
+    };
+  }
+
+  return state;
 }

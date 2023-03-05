@@ -1,25 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Press+Start+2P&display=swap');
 
 .contenedor-cards{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     flex-wrap: wrap;
-    /* margin-top: 250px; */
 }
 
 .contenedor-paginado{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 300px;
+    margin-top: 150px;
+}
+
+.contenedor-paginado-fondo{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .btnPag{
-    font-size: 20px;
+    padding: 8px;
+    font-size: 18px;
     border: solid rgb(255, 0, 0) 2px;
     background-color:  rgba(0, 0, 0, 0.648) ;
     border-radius: 10px;
     margin: 10px;
     cursor: pointer;
     color: aliceblue;
+    font-family: "Press Start 2P";
 }

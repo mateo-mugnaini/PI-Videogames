@@ -5,10 +5,10 @@ import Card from "../Card/Card";
 import "../Cards/Cards.css";
 
 export default function Cards() {
-  /* CARD */
+  /* ----------------------------CARD---------------------------- */
   const games = useSelector((state) => state?.videogames);
 
-  /* PAGINADO */
+  /* ----------------------------PAGINADO---------------------------- */
   const [numeroPagina, setNumeroPagina] = useState(1);
 
   const grupo = 15;
@@ -19,17 +19,6 @@ export default function Cards() {
     games && games.slice ? games.slice(conteoInicial, conteoFinal) : [];
 
   const paginas = [];
-  // for (let i = 1; i <= game; i++) {
-  //   paginas.push(
-  //     <button
-  //       key={i}
-  //       className={`btnPag ${numeroPagina === i ? "active" : ""}`}
-  //       onClick={() => setNumeroPagina(i)}
-  //     >
-  //       {i}
-  //     </button>
-  //   );
-  // }
 
   const numPaginas = Math.ceil(games?.length / grupo);
 
@@ -37,12 +26,23 @@ export default function Cards() {
     paginas.push(i);
   }
 
-  React.useEffect(() => console.log(games));
+  // React.useEffect(() => console.log(games));
 
   return (
+    /* ------------------------------CONTENEDOR GENERAL------------------------------ */
     <div className="contenedor-general-cards">
       <div className="contenedor-paginado">
+        {/* ------------------------------CONTENEDOR PAGINADO------------------------------ */}
         <div>
+          {/* ------------------------------BOTON ATRAS------------------------------ */}
+          <button
+            className="btnPag"
+            onClick={() => setNumeroPagina(numeroPagina - 1)}
+            disabled={numeroPagina === 1}
+          >
+            ◄
+          </button>
+          {/* ------------------------------BOTONES PAGINAS------------------------------ */}
           {paginas.map((pagina) => (
             <button
               key={pagina}
@@ -52,22 +52,17 @@ export default function Cards() {
               {pagina}
             </button>
           ))}
-          <button
-            className="btnPag"
-            onClick={() => setNumeroPagina(numeroPagina - 1)}
-            disabled={numeroPagina === 1}
-          >
-            BACK
-          </button>
+          {/* ------------------------------BOTON PROXIMO------------------------------ */}
           <button
             className="btnPag"
             onClick={() => setNumeroPagina(numeroPagina + 1)}
             disabled={numeroPagina === Math.ceil(games?.length / grupo)}
           >
-            NEXT
+            ►
           </button>
         </div>
       </div>
+      {/* ------------------------------CARTAS------------------------------ */}
       <div className="contenedor-cards">
         {game.length > 0 &&
           game.map((e) => {
@@ -85,6 +80,37 @@ export default function Cards() {
               />
             );
           })}
+      </div>
+      <div className="contenedor-paginado-fondo">
+        {/* ------------------------------CONTENEDOR PAGINADO------------------------------ */}
+        <div>
+          {/* ------------------------------BOTON ATRAS------------------------------ */}
+          <button
+            className="btnPag"
+            onClick={() => setNumeroPagina(numeroPagina - 1)}
+            disabled={numeroPagina === 1}
+          >
+            ◄
+          </button>
+          {/* ------------------------------BOTONES PAGINAS------------------------------ */}
+          {paginas.map((pagina) => (
+            <button
+              key={pagina}
+              className={`btnPag ${pagina === numeroPagina ? "active" : ""}`}
+              onClick={() => setNumeroPagina(pagina)}
+            >
+              {pagina}
+            </button>
+          ))}
+          {/* ------------------------------BOTON PROXIMO------------------------------ */}
+          <button
+            className="btnPag"
+            onClick={() => setNumeroPagina(numeroPagina + 1)}
+            disabled={numeroPagina === Math.ceil(games?.length / grupo)}
+          >
+            ►
+          </button>
+        </div>
       </div>
     </div>
   );

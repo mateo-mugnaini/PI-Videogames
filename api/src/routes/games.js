@@ -7,23 +7,15 @@ const { APIKEY } = process.env;
 
 const router = Router();
 
-// router.get("/", (rec, res) => {
-//   res.send(true);
-// });
-
-// Todos los Video Juegos
-
 router.get("/", async (req, res) => {
-  const { name } = req.query;
-  if (name) {
-    try {
+  try {
+    const { name, genresName } = req.query;
+    if (name) {
       const apiVideoGames = [];
       let url = `https://api.rawg.io/api/games?search=${name}&key=${APIKEY}`;
       for (let index = 0; index < 5; index++) {
         const response = await axios.get(url);
-
         response.data?.results.forEach((game) => apiVideoGames.push(game));
-
         url = response.data.next;
       }
 
@@ -37,30 +29,56 @@ router.get("/", async (req, res) => {
 
       const allVideogames = [...apiVideoGames, ...dataBaseVideoGames];
       res.send(allVideogames);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send("An error occurred");
+    } else if (genresName) {
+      const numberPages = [1, 2, 3];
+
+      const responses = await Promise.all(
+        numberPages.map(async (num) => {
+          const res = await axios.get(
+            `https://api.rawg.io/api/games?key=${APIKEY}&page=${num}&page_size=40`
+          );
+          return res;
+        })
+      );
+
+      const apiVideoGames = [
+        ...responses[0].data.results,
+        ...responses[1].data.results,
+        ...responses[2].data.results,
+      ];
+      const filteredGames = apiVideoGames.filter((e) =>
+        e.genres?.some((genero) => genero.name === genresName)
+      );
+      res.send(filteredGames);
+    } else {
+      const dataBaseVideoGames = await Videogame.findAll({
+        attributes: ["name", "image"],
+        include: Gender,
+      });
+
+      const numberPages = [1, 2, 3];
+
+      const responses = await Promise.all(
+        numberPages.map(async (num) => {
+          const res = await axios.get(
+            `https://api.rawg.io/api/games?key=${APIKEY}&page=${num}&page_size=40`
+          );
+          return res;
+        })
+      );
+
+      const apiVideoGames = [
+        ...responses[0].data.results,
+        ...responses[1].data.results,
+        ...responses[2].data.results,
+      ];
+
+      const allVideogames = [...apiVideoGames, ...dataBaseVideoGames];
+      res.send(allVideogames);
     }
-  } else {
-    const dataBaseVideoGames = await Videogame.findAll({
-      attributes: ["name", "image"],
-      include: Gender,
-    });
-
-    const apiVideoGames = [];
-    let url = `http://api.rawg.io/api/games?key=${APIKEY}`;
-    for (let index = 0; index < 5; index++) {
-      const response = await axios.get(url);
-
-      response.data?.results.forEach((game) => apiVideoGames.push(game));
-
-      url = response.data.next;
-    }
-
-    console.log("AAA", apiVideoGames.length);
-
-    const allVideogames = [...apiVideoGames, ...dataBaseVideoGames];
-    res.send(allVideogames);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred");
   }
 });
 
@@ -73,12 +91,11 @@ router.get("/:idVideogame", async (req, res) => {
     );
 
     const gameSelected = response.data;
-    // console.log(gameSelected);
+
     const dataBaseVideoGames = await Videogame.findByPk(idVideogame, {
       attributes: ["id", "name", "rating", "description", "image"],
       include: Gender,
     });
-    // console.log(typeof dataBaseVideoGames);
 
     res.send(
       gameSelected.detail === "Not found." ? [dataBaseVideoGames] : gameSelected
@@ -90,31 +107,26 @@ router.get("/:idVideogame", async (req, res) => {
 });
 
 router.post("/", async function (req, res) {
-  const { name, image, description, platform, released, rating, gender } =
-    req.body;
+  try {
+    const { name, image, description, platform, released, rating, gender } =
+      req.body;
 
-  const idFecha = new Date();
-  // console.log(
-  //   "aaaa",
-  //   name,
-  //   image,
-  //   description,
-  //   platform,
-  //   released,
-  //   rating,
-  //   gender
-  // );
-  const juegos = await Videogame.create({
-    name: name,
-    image: image,
-    description: description,
-    platform: platform,
-    released: released,
-    rating: rating,
-    id: idFecha.getTime(),
-  });
-  await juegos.setGenders([...gender]);
-  res.json(juegos);
+    const idFecha = new Date();
+    const juegos = await Videogame.create({
+      name: name,
+      image: image,
+      description: description,
+      platform: platform,
+      released: released,
+      rating: rating,
+      id: idFecha.getTime(),
+    });
+    await juegos.setGenders([...gender]);
+    res.json(juegos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred");
+  }
 });
 
 module.exports = router;

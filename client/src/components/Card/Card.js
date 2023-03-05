@@ -18,9 +18,8 @@ export default function Card(props) {
         </Link>
         <div className="contenedor-textos">
           <div className="titulo">
-            <h1>Name:</h1>
             <div className="nombre">
-              <h3>{props.nombre}</h3>
+              <h2>{props.nombre}</h2>
             </div>
           </div>
           <div className="generos">

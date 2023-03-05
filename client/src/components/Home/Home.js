@@ -3,6 +3,7 @@ import Cards from "../Cards/Cards";
 import { getGames } from "../../Redux/Actions/actions";
 import { connect } from "react-redux";
 import "../Home/Home.css";
+import Filter from "../Filter/Filter";
 
 //codigo
 function Home(props) {
@@ -11,6 +12,9 @@ function Home(props) {
   }, []);
   return (
     <div className="contenedor-home">
+      <div className="filter">
+        <Filter />
+      </div>
       <div className="card-home">
         <Cards />
       </div>

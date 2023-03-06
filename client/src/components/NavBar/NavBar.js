@@ -12,15 +12,20 @@ export default function NavBar() {
             <p> Home </p>
           </Link>
         </div>
-        <div className="boton-linkedin">
-          <a
+        <div className="boton-aboutme">
+          <div className="div-Btn-NV">
+            <Link className="btn-NV" to="/about">
+              <p> About </p>
+            </Link>
+            {/* <a
             className="btn-NV"
             href="https://www.linkedin.com/in/mateo-mugnaini/"
             target="_blank"
             rel="noreferrer"
           >
             <p> Linkedin </p>
-          </a>
+          </a> */}
+          </div>
         </div>
         <div>
           <Searchbar />

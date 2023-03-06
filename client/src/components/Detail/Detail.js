@@ -56,7 +56,11 @@ function Detail(props) {
             </div>
             <div className="contenedor-descripcion">
               <h1 className="titulo-detalle">Descripcion: </h1>
-              <p clasname="nombre-detalle">{videojuego?.description}</p>
+              <p clasname="nombre-detalle">
+                <div
+                  dangerouslySetInnerHTML={{ __html: videojuego?.description }}
+                />
+              </p>
             </div>
           </div>
           <div className="contenedor-imagen">

@@ -8,19 +8,18 @@ function SearchBar() {
 
   const dispatch = useDispatch();
   async function handleSubmit(e) {
-    e.preventDefault();
-    dispatch(getGame(nameGames, "All"));
+    // e.preventDefault();
+    dispatch(getGame(e, "All"));
   }
 
   return (
     <div className="contenedor-search">
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form>
         <input
           className="searchbar"
           type="search"
           placeholder="Buscar juego..."
-          value={nameGames}
-          onChange={(e) => setNameGames(e.target.value)}
+          onChange={(e) => handleSubmit(e.target.value)}
         />
         <input className="botonSearch" type="submit" value="Buscar" />
       </form>

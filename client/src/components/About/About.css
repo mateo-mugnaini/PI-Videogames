@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Press+Start+2P&display=swap');
+
+.contenedor-aboutme{
+    display: flex;
+}
+.fondo-aboutme{
+    background-image: url(https://www.xtrafondos.com/descargar.php?id=8359&resolucion=1920x1080);
+    width: 100%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.contenedor-textos-aboutme{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: 100px ;
+    color: aliceblue;
+}
+
+.titulo-about{
+    display:flex;
+    justify-content: center;
+    font-size: 30px;
+    font-family: "Press Start 2p" 
+}
+
+.about-proyect{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 30px;
+}
+.texto-about{
+    font-size: 20px;
+    margin: 20px;
+    text-align: center;
+}
+.contenedor-subtexto{
+    display: flex;
+    align-items: center;
+    width: 1000px;
+    height: 400px;
+    border: red 4px solid;
+    border-radius: 20px;
+    background-color: rgba(95, 95, 116, 0.354);
+    backdrop-filter: blur(20px);
+}
+
+.contenedor-tecnologias{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 360px;
+    height: 400px;
+    border: rgb(72, 255, 0) 4px solid;
+    border-radius: 20px;
+    background-color: rgba(95, 95, 116, 0.354);
+    backdrop-filter: blur(20px);
+}
+
+.contenedor-sobremi{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1000px;
+    height: 400px;
+    border: red 4px solid;
+    border-radius: 20px;
+    background-color: rgba(95, 95, 116, 0.354);
+    backdrop-filter: blur(20px);
+}
+
+.contenedor-contacto{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 360px;
+    height: 400px;
+    border: rgb(72, 255, 0) 4px solid;
+    border-radius: 20px;
+    background-color: rgba(95, 95, 116, 0.354);
+    backdrop-filter: blur(20px);
+}
+
+.about-me{
+    display: flex;
+    flex-direction: column;
+    font-size: 30px;
+}
+
+.texto-sobremi{
+    font-size: 20px;
+    margin: 20px;
+    align-items: center;
+}
+
+.titulo-sobremi{
+    display: flex;
+    font-size: 35px;
+    text-decoration: underline;
+    justify-content: center;
+}
+
+.titulo-about-proyect{
+    display: flex;
+    font-size: 35px;
+    text-decoration: underline;
+    justify-content: center;
+}
+
+.titulo-contacto{
+    display: flex;
+    font-size: 35px;
+    text-decoration: underline;
+    justify-content: center;
+}
+
+.contacto-aboutme{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.botones-link{
+    font-size: 25px;
+    text-decoration: none;
+    color: aliceblue;
+}
+
+.titulo-tecnologias{
+    display: flex;
+    font-size: 30px;
+    text-decoration: underline; 
+}
+
+.tecnologias{
+    
+}
+
+.cuadros1{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: space-around;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.cuadros2{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    align-content: space-around;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}

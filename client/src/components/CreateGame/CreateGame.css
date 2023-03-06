@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Press+Start+2P&display=swap');
+
 .contenedor-general-formulario{
     background-image: url(https://www.xtrafondos.com/descargar.php?id=8359&resolucion=1920x1080);
     background-attachment: fixed;
@@ -12,7 +14,6 @@
 .contenedor-textos-head{
     display: flex;
     flex-direction: column;
-    margin-bottom: 100px;
 }
 
 .titulo-create{
@@ -46,12 +47,6 @@
     right: 240px;
     bottom: 80px;
 }
-.vista-previa-imagen{
-    position: relative;
-    left: 40px;
-    top: 10px;
-    height: 200px;
-}
 
 .formulario-label{
     font-size: 30px;
@@ -59,10 +54,9 @@
 }
 
 .formulario-fondo{
-    border: solid rgb(174, 24, 24) 2px;
+    border: red 4px solid;
     background-color: rgba(51, 51, 51, 0.498);
     position: sticky;
-    border-radius: 30px;
     height: 500px;
     width: 1500px;
     display: flex;
@@ -85,7 +79,7 @@
 .opciones-plataformas{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
     border: solid rgb(174, 24, 24) 2px;
     border-radius: 10px;
     background-color: rgba(51, 51, 51, 0.498);
@@ -93,15 +87,38 @@
     width: 450px;
     height: 200px;
     position: absolute;
-    left: 650px;
-    bottom: 180px;
+    left: 500px;
+    top: 420px;
     flex-direction: column;
+    align-content: space-around;
+    align-items: center;
 }
 
 
 .contenedor-plataformas{
     display: flex;
     justify-content: space-around;
+}
+
+.plataformas-seleccionadas{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    border: red 2px solid;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 4px;
+    height: 30px;
+    align-content: center;
+}
+
+.boton-borrar{
+    color: red;
+    font-style: bold;
+    border: rgba(255, 0, 0, 0);
+    background-color: rgba(240, 255, 255, 0);
 }
 
 .contenedor-generos{
@@ -112,7 +129,7 @@
 .opciones-generos{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
     border: solid rgb(174, 24, 24) 2px;
     border-radius: 10px;
     background-color: rgba(51, 51, 51, 0.498);
@@ -120,7 +137,79 @@
     width: 450px;
     height: 200px;
     position: absolute;
-    left: 650px;
-    top: 690px;
+    left: 500px;
+    top: 30px;
     flex-direction: column;
+    align-content: space-around;
+    align-items: center;
+}
+
+.generos-seleccionado{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    border: red 2px solid;
+    border-radius: 10px;
+    width: fit-content;
+    padding: 4px;
+    height: 30px;
+    align-content: center;
+}
+
+.vistaprevia{
+    position: absolute;
+    top: 350px;
+    left: 1130px;
+    height: 400px;
+    width: 300px;
+    background-color: rgba(130, 130, 148, 0.733);
+    border-radius: 30px;
+    border: rgb(221, 13, 13) solid 5px 
+}
+
+.vistaprevia-imagen{
+    position: relative;
+    left: 50px;
+    top: 10px;
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    border: 4px solid #000000;
+    border-radius: 50%;
+}
+
+.vistaprevia-nombre{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+}
+
+.vistaprevia-generos{    
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+.vistaprevia-rating{
+    position: absolute;
+    font-size: 40px;
+    left: 140px;
+    top: 310px;
+}
+
+.boton-crear{
+    color: rgb(0, 0, 0);
+    font-family: "Press Start 2P";
+    font-size: 10px;
+    border: none;
+    /* border: white 3px solid; */
+    background-color: aliceblue;
+    height: 35px;
+    width: 100px;
+    position: relative;
+    left: 200px;
 }

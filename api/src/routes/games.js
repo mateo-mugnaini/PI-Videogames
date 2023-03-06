@@ -9,15 +9,24 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const { name, genresName } = req.query;
+    const { name, genresName, type = "All" } = req.query;
     if (name) {
-      const apiVideoGames = [];
-      let url = `https://api.rawg.io/api/games?search=${name}&key=${APIKEY}`;
-      for (let index = 0; index < 5; index++) {
-        const response = await axios.get(url);
-        response.data?.results.forEach((game) => apiVideoGames.push(game));
-        url = response.data.next;
-      }
+      const numberPages = [1, 2, 3];
+
+      const responses = await Promise.all(
+        numberPages.map(async (num) => {
+          const res = await axios.get(
+            `https://api.rawg.io/api/games?search=${name}&key=${APIKEY}&page=${num}&page_size=40`
+          );
+          return res;
+        })
+      );
+
+      const apiVideoGames = [
+        ...responses[0].data.results,
+        ...responses[1].data.results,
+        ...responses[2].data.results,
+      ];
 
       const dataBaseVideoGames = await Videogame.findAll({
         where: {
@@ -28,7 +37,15 @@ router.get("/", async (req, res) => {
       });
 
       const allVideogames = [...apiVideoGames, ...dataBaseVideoGames];
-      res.send(allVideogames);
+      // res.send(allVideogames);
+      // prettier-ignore
+      res.send(
+        type === "DB"
+          ? dataBaseVideoGames
+          : type === "API" ? apiVideoGames
+          : type === "All" ? allVideogames
+           : []
+      );
     } else if (genresName) {
       const numberPages = [1, 2, 3];
 
@@ -49,7 +66,20 @@ router.get("/", async (req, res) => {
       const filteredGames = apiVideoGames.filter((e) =>
         e.genres?.some((genero) => genero.name === genresName)
       );
-      res.send(filteredGames);
+      const dataBaseVideoGames = [];
+
+      const allVideogames = [...filteredGames, ...dataBaseVideoGames];
+      // res.send(filteredGames);
+      // prettier-ignore
+      res.send(
+        type === "DB"
+          ? dataBaseVideoGames
+          : type === "API"
+              ? apiVideoGames
+              : type === "All"
+              ? allVideogames
+              : []
+      );
     } else {
       const dataBaseVideoGames = await Videogame.findAll({
         attributes: ["name", "image"],
@@ -74,11 +104,19 @@ router.get("/", async (req, res) => {
       ];
 
       const allVideogames = [...apiVideoGames, ...dataBaseVideoGames];
-      res.send(allVideogames);
+      // res.send(allVideogames);
+      // prettier-ignore
+      res.send(
+        type === "DB"
+          ? dataBaseVideoGames
+          : type === "API" ? apiVideoGames
+          : type === "All" ? allVideogames
+          : []
+      );
     }
   } catch (error) {
     console.error(error);
-    res.status(500).send("An error occurred");
+    res.status(500).send("Error al importar los elementos");
   }
 });
 

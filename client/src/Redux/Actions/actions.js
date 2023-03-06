@@ -5,14 +5,16 @@ import {
   GET_BUSQUEDA,
   GET_DETAIL,
   GET_GENRES,
-  FILTER_GENRES,
+  FILTER_BY_CREATER,
   ORDER_BY_NAME,
 } from "../Actions/actions_type";
 
 // --------------------------------------------GETS GAMES--------------------------------------------
-export function getGames() {
+export function getGames(type = "All") {
   return async function (dispatch) {
-    const response = await axios.get("http://localhost:3001/videogames");
+    const response = await axios.get(
+      `http://localhost:3001/videogames?type=${type}`
+    );
     dispatch({
       type: GET_GAMES,
       payload: response.data.slice(0, 100),

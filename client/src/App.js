@@ -5,6 +5,7 @@ import LandingPage from "./components/LandingPage/LandingPage";
 import Detail from "./components/Detail/Detail";
 import NavBar from "./components/NavBar/NavBar";
 import CreateGame from "./components/CreateGame/CreateGame";
+import About from "./components/About/About";
 
 function App() {
   const location = useLocation();
@@ -19,6 +20,9 @@ function App() {
         </Route>
         <Route path="/home">
           <Home />
+        </Route>
+        <Route path="/about">
+          <About />
         </Route>
         <Route path="/gamecreate">
           <CreateGame />

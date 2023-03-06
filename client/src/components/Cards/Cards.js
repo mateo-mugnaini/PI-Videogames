@@ -68,15 +68,15 @@ export default function Cards() {
           game.map((e) => {
             const gamesArray = [];
             e.genres?.map((el) => gamesArray.push(el.name));
+            e.genders?.map((el) => gamesArray.push(el.name));
+            console.log(e);
             return (
               <Card
                 key={e.id}
                 id={e.id}
                 nombre={e.name}
-                background_image={e.background_image}
-                generos={
-                  gamesArray.length > 0 ? gamesArray.join(", ") : e.genres
-                }
+                background_image={e.background_image || e.image}
+                generos={gamesArray.length > 0 && gamesArray.join(", ")}
               />
             );
           })}

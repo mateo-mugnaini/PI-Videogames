@@ -19,7 +19,7 @@
 .nombre{
     display: flex;
     flex-direction: column;
-    font-size: 25px;
+    font-size: 22px;
     /* margin-top: -40px; */
 }
 .generos{

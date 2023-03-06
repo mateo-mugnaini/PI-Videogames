@@ -40,6 +40,17 @@ function CreateGame(props) {
     genreName: [],
   });
 
+  const [errors, setErrors] = useState({
+    nombre: true,
+    imagen: true,
+    descripcion: true,
+    fechaDeLanzamiento: true,
+    rating: true,
+    platforms: true,
+    genres: true,
+    genreName: true,
+  });
+
   useEffect(() => {
     setGeneros(props.genres);
   }, [props.genres]);
@@ -122,12 +133,28 @@ function CreateGame(props) {
       ...inputs,
       [e.target.name]: e.target.value,
     });
+    console.log(errors);
   }
 
   /* ----------------------------------ON SUBMIT---------------------------------- */
   async function onSubmit(e) {
     e.preventDefault();
 
+    const keys = Object.keys(inputs);
+
+    // console.log("keys", keys);
+    // keys.map((key) => {
+    //   // console.log("inputs value", inputs[key] !== "", key);
+    //   if (inputs[key] !== "") {
+    //     console.log(key);
+    //     setErrors({
+    //       ...errors,
+    //       [key]: false,
+    //     });
+    //   }
+    // });
+
+    // console.log(errors);
     if (!inputs.nombre) {
       return window.alert("El campo 'nombre' está vacío");
     }
@@ -156,19 +183,64 @@ function CreateGame(props) {
       return window.alert("Debe seleccionar al menos un género");
     }
 
+    /* if (inputs.nombre) {
+      // return window.alert("El campo 'nombre' está vacío");
+      setErrors({ ...errors, nombre: false });
+    }
+
+    if (inputs.imagen) {
+      // return window.alert("El campo 'imagen' está vacío");
+      setErrors({ ...errors, imagen: false });
+    }
+    if (inputs.descripcion) {
+      // return window.alert("El campo 'descripcion' está vacío");
+      setErrors({ ...errors, descripcion: false });
+    }
+    if (inputs.platforms.length < 1) {
+      // return window.alert("El campo 'plataformas' está vacío");
+      setErrors({ ...errors, platforms: false });
+    }
+    if (inputs.fechaDeLanzamiento) {
+      // return window.alert("El campo 'fechaDeLanzamiento' está vacío");
+      setErrors({ ...errors, fechaDeLanzamiento: false });
+    }
+    if (inputs.rating) {
+      // return window.alert("El campo 'rating' está vacío");
+      setErrors({ ...errors, rating: false });
+    }
+    if (inputs.genres.length === 0) {
+      // return window.alert("Debe seleccionar al menos un género");
+      setErrors({ ...errors, genres: false });
+    }*/
     const formData = {
-      nombre: inputs.nombre,
-      imagen: inputs.imagen,
-      descripcion: inputs.descripcion,
-      fechaDeLanzamiento: inputs.fechaDeLanzamiento,
+      name: inputs.nombre,
+      image: inputs.imagen,
+      description: inputs.descripcion,
+      released: inputs.fechaDeLanzamiento,
       rating: inputs.rating,
-      plataformas: inputs.platforms,
-      genres: inputs.genres,
+      platform: inputs.platforms,
+      gender: inputs.genres,
     };
-    await axios.post("http://localhost:3001/videojuegos", formData);
+    await axios.post("http://localhost:3001/videogames", formData);
     window.alert("El juego ha sido creado con éxito!!");
     window.location.href = "http://localhost:3000/home";
   }
+
+  /*   if (false) {
+     const formData = {
+      name: inputs.nombre,
+      image: inputs.imagen,
+description: inputs.descripcion,
+        released: inputs.fechaDeLanzamiento,
+       rating: inputs.rating,
+        platform: inputs.platforms,
+        gender: inputs.genres,
+      };
+       await axios.post("http://localhost:3001/videogames", formData);
+      window.alert("El juego ha sido creado con éxito!!");
+       window.location.href = "http://localhost:3000/home";
+     }
+  / }*/
 
   /* ----------------------------------RETURN---------------------------------- */
   return (
@@ -194,6 +266,11 @@ function CreateGame(props) {
           <div className="formulario-fondo">
             {/* ----------------------------------NOMBRE---------------------------------- */}
             <div className="formulario">
+              {!inputs.nombre && (
+                <label className="error">
+                  El campo 'nombre' contiene un error
+                </label>
+              )}
               <label className="formulario-label"> Nombre: </label>
               <input
                 className="input-marco"
@@ -201,7 +278,6 @@ function CreateGame(props) {
                 name="nombre"
                 value={inputs.nombre}
                 onChange={(e) => handleChange(e)}
-                required
               />
             </div>
             {/* ----------------------------------IMAGEN---------------------------------- */}
@@ -214,7 +290,6 @@ function CreateGame(props) {
                 type="text"
                 id="imagen"
                 onChange={(e) => handleChange(e)}
-                required
               />
             </div>
             {/* ----------------------------------DESCRIPCION---------------------------------- */}
@@ -223,18 +298,16 @@ function CreateGame(props) {
               <textarea
                 className="input-marco"
                 placeholder="Inserte una descripcion"
-                name="enlace-imagen"
+                name="descripcion"
                 onChange={(e) => handleChange(e)}
-                required
               />
             </div>
             {/* ----------------------------------PLATAFORMA---------------------------------- */}
             <div className="formulario">
               <label className="formulario-label"> Plataformas: </label>
               <select
-                defaultValue={"none"}
                 className="input-marco"
-                name="plataformas"
+                name="platforms"
                 onChange={(e) => handleSelectPlatforms(e)}
               >
                 <option>Selecciona una plataforma</option>
@@ -251,10 +324,9 @@ function CreateGame(props) {
               <label className="formulario-label">Fecha de lanzamiento:</label>
               <input
                 className="input-marco"
-                name="enlace-imagen"
+                name="fechaDeLanzamiento"
                 type="date"
                 onChange={(e) => handleChange(e)}
-                required
               />
             </div>
             {/* ----------------------------------RATING---------------------------------- */}
@@ -262,22 +334,23 @@ function CreateGame(props) {
               <label className="formulario-label">Rating:</label>
               <input
                 className="input-marco"
-                name="enlace-imagen"
+                name="rating"
                 type="range"
-                id="enlace-imagen"
+                min="0"
+                max="5"
                 onChange={(e) => handleChange(e)}
-                required
               />
+              <div className="vistaprevia-rating">{inputs.rating}</div>
             </div>
             {/* ----------------------------------GENREROS---------------------------------- */}
             <div className="formulario">
               <label className="formulario-label">Generos</label>
               <select
-                className="Form-temperamentos"
+                className="input-marco"
                 name="genres"
                 onChange={(e) => handleSelectGenres(e)}
-                re
               >
+                <option>Selecciona un genero</option>
                 {generos &&
                   generos.map((c) => (
                     <option value={c.id} primary={c.name}>
@@ -291,14 +364,21 @@ function CreateGame(props) {
               <input className="boton-crear" type="submit" value="Crear!" />
             </div>
           </div>
-          {/* ----------------------------------VISTA PREVIA IMAGEN---------------------------------- */}
-          <div className="formulario-imagen-muestra">
+          {/* ----------------------------------VISTA PREVIA---------------------------------- */}
+          <div className="vistaprevia">
+            {/* ----------------------------------VISTA PREVIA IMAGEN---------------------------------- */}
             <img
-              className="vista-previa-imagen"
+              className="vistaprevia-imagen"
               src=""
               id="vista-previa"
               alt="Vista previa de la imagen"
             />
+            {/* ----------------------------------VISTA PREVIA NOMBRE---------------------------------- */}
+            <h2 className="vistaprevia-nombre">{inputs.nombre}</h2>
+            {/* ----------------------------------VISTA PREVIA GENEROS---------------------------------- */}
+            <h2 className="vistaprevia-generos">
+              {inputs?.genreName.join(", ")}
+            </h2>
           </div>
           {/* ----------------------------------VER GENEROS---------------------------------- */}
           <div className="contenedor-generos">
@@ -308,7 +388,7 @@ function CreateGame(props) {
                   <div className="generos-seleccionado">
                     {/* /* ----------------------------------BOTON BORRAR GENERO----------------------------------  */}
                     <button
-                      className="boton-generos"
+                      className="boton-borrar"
                       name={c}
                       onClick={(e) => handleDeleteGenres(e)}
                     >
@@ -327,7 +407,7 @@ function CreateGame(props) {
                   <div className="plataformas-seleccionadas">
                     {/* ----------------------------------BOTON BORRAR PLATAFORMAS----------------------------------  */}
                     <button
-                      className="boton-plastaforma"
+                      className="boton-borrar"
                       name={c}
                       onClick={(e) => handleDeletePlatforms(e)}
                     >

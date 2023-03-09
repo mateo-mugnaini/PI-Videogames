@@ -30,10 +30,10 @@ function CreateGame(props) {
   ];
 
   const [inputs, setInputs] = useState({
-    nombre: "",
-    imagen: "",
-    descripcion: "",
-    fechaDeLanzamiento: "",
+    name: "",
+    image: "",
+    description: "",
+    released: "",
     rating: "",
     platforms: [],
     genres: [],
@@ -41,10 +41,10 @@ function CreateGame(props) {
   });
 
   const [errors, setErrors] = useState({
-    nombre: true,
-    imagen: true,
-    descripcion: true,
-    fechaDeLanzamiento: true,
+    name: true,
+    image: true,
+    description: true,
+    released: true,
     rating: true,
     platforms: true,
     genres: true,
@@ -163,7 +163,7 @@ function CreateGame(props) {
       return window.alert("El campo 'imagen' está vacío");
     }
 
-    if (!inputs.descripcion) {
+    if (!inputs.description) {
       return window.alert("El campo 'descripcion' está vacío");
     }
 
@@ -213,10 +213,10 @@ function CreateGame(props) {
       setErrors({ ...errors, genres: false });
     }*/
     const formData = {
-      name: inputs.nombre,
-      image: inputs.imagen,
-      description: inputs.descripcion,
-      released: inputs.fechaDeLanzamiento,
+      name: inputs.name,
+      image: inputs.image,
+      description: inputs.description,
+      released: inputs.released,
       rating: inputs.rating,
       platform: inputs.platforms,
       gender: inputs.genres,
@@ -298,7 +298,7 @@ description: inputs.descripcion,
               <textarea
                 className="input-marco"
                 placeholder="Inserte una descripcion"
-                name="descripcion"
+                name="description"
                 onChange={(e) => handleChange(e)}
               />
             </div>

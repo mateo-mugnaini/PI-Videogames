@@ -5,6 +5,7 @@ import {
   orderByName,
   getGenres,
   filterByGenres,
+  orderByRating,
 } from "../../Redux/Actions/actions";
 import "../Filter/Filter.css";
 
@@ -19,6 +20,15 @@ function Filter(props) {
       props.orderByName(e.target.value, props.videojuego);
     }
   }
+  /*ORDENAR RATING */
+  function handleOrderRating(e) {
+    if (e.target.value === "All") {
+      props.getGames();
+    } else {
+      props.orderByRating(e.target.value, props.videojuego);
+    }
+  }
+
   /*FILTRAR API O DB */
   function handleBdApi(e) {
     props.getGames(e.target.value);
@@ -38,6 +48,13 @@ function Filter(props) {
     props.getGenres();
   }, []);
 
+  /*RESET */
+
+  // const handleReset = () => {
+  //   setType("All");
+  //   props.resetFilters();
+  // };
+
   return (
     <div className="container-filter">
       {/* --------------------ORDENAR ALFABETICAMENTE--------------------*/}
@@ -52,13 +69,25 @@ function Filter(props) {
           <option value="Z-A">Z-A</option>
         </select>
       </div>
-      {/* --------------------ORDENAR GERES--------------------*/}
+      {/* --------------------ORDENAR RATING--------------------*/}"{" "}
+      <div className="name-filter">
+        <select
+          className="filtro"
+          name="Rating"
+          onChange={(e) => handleOrderRating(e)}
+        >
+          <option value="All">Ordenar por Rating</option>
+          <option value="Asc">Ascendente</option>
+          <option value="Des">Descendente</option>
+        </select>
+      </div>
+      "{/* --------------------ORDENAR GERES--------------------*/}
       <div>
         <select
           className="filtro"
-          name="temperaments"
+          name="Generos"
+          s
           onChange={(e) => handleSelectGenres(e)}
-          required
         >
           <option value="All">Generos</option>
           {props.genres &&
@@ -69,7 +98,7 @@ function Filter(props) {
       <div className="name-filter">
         <select
           className="filtro"
-          name="Alfabeticamente"
+          name="Creadopor"
           onChange={(f) => handleBdApi(f)}
         >
           <option value="All">All</option>
@@ -77,6 +106,15 @@ function Filter(props) {
           <option value="API">API</option>
         </select>
       </div>
+      {/* --------------------BOTON RESET --------------------*/}
+      {/* <div>
+        <button
+          className="filtro-reset"
+          // onChange={handleReset}
+        >
+          Reset
+        </button>
+      </div> */}
     </div>
   );
 }
@@ -90,7 +128,8 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
   getGames,
-  filterByGenres,
-  orderByName,
   getGenres,
+  orderByName,
+  orderByRating,
+  filterByGenres,
 })(Filter);

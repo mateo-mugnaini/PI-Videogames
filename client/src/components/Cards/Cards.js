@@ -69,7 +69,6 @@ export default function Cards() {
             const gamesArray = [];
             e.genres?.map((el) => gamesArray.push(el.name));
             e.genders?.map((el) => gamesArray.push(el.name));
-            console.log(e);
             return (
               <Card
                 key={e.id}

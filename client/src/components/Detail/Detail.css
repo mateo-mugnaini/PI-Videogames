@@ -1,100 +1,133 @@
 @import url('https://fonts.googleapis.com/css2?family=Mynerve&family=Press+Start+2P&display=swap');
 
-.contenedor-general-detalle{
-display: flex;
-flex-direction: row;
-background: url('https://rare-gallery.com/mocahbig/33242-Gamer-4k-Ultra-HD-Wallpaper.jpg') ;
-background-size: cover;
-height: 100vh;
-color: aliceblue;
-}
-/* NOMBRE */
-.contenedor-titulo{
-    position: absolute;
-    left: 50px;
-    top: 100px;
+.detalle-fondo{
+    display: flex;
+    background: url('https://rare-gallery.com/mocahbig/33242-Gamer-4k-Ultra-HD-Wallpaper.jpg') ;
+    background-size: contain;
+    background-attachment:fixed ;
+    background-position: center;
+    color: aliceblue;
 }
 
-.titulo-detalle{
-    font-family: "Press Start 2P";
-}
-
-.nombre-detalle{
-    position: relative;
-    bottom: 40px;
-    left: 250px;
-}
-
-/* PLATAFORMAS */
-.contenedor-plataformas{
-    position: absolute;
-    left: 50px;
-    top: 150px;
-}
-
-.plataformas-detalle{
-    position: relative;
-    top: 20px;
-    left: 10px;
-    width: 319px;
+.contenedor-detalle-general{
     display: flex;
     flex-direction: row;
+    margin-top: 100px;
+    margin-left: 40px;
+    margin-right: 40px;
     flex-wrap: wrap;
 }
-/* RATING */
-.contenedor-rating{
-    position: absolute;
-    left: 50px;
-    top: 250px;
-}
-
-.rating-detalle{
-    position: relative;
-    bottom: 50px;
-    left: 150px;
-}
-
-/* GENEROS */
-.contenedor-generos{
-    position: absolute;
-    left: 50px;
-    top: 300px;
-}
-
-.generos-detalle{
-    position: relative;
-    left: 10px;
-    bottom: 10px;
-    width: 319px;
+/* -------------NOMBRE------------- */
+.contenedor-detalle-nombre{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    align-items: baseline;
+    border: red 4px solid;
+    border-radius: 20px;
+    width: 480px;
+    margin: 10px;
+    backdrop-filter: blur(10px);
+}
+.detalle-nombre-titulo{
+    margin-left: 20px;
+}
+.detalle-nombre{
+    font-size: 25px;
+    margin-left: 20px;
 }
 
-/* DESCRIPTION */
-.contenedor-descripcion{
-    position: absolute;
-    left: 50px;
-    top: 350px;
+/* -------------PLATAFORMAS------------- */
+.detalle-plataformas-titulo{
+    margin-left: 20px;
 }
-
-.generos-detalle{
-    width: 319px;
+.detalle-plataformas{
+    font-size: 20px;
+    margin-left: 20px;
     display: flex;
-    align-items: end;
-    flex-direction: row;
-    flex-wrap: wrap;
+}
+
+/* -------------RATING------------- */
+.contenedor-detalle-rating{
+    display: flex;
+    align-items: baseline;
+    border: blue 4px solid;
+    border-radius: 20px;
+    width: 480px;
+    margin: 10px;
+    backdrop-filter: blur(10px);
+}
+.detalle-rating-titulo{
+    margin-left: 20px;
+}
+.detalle-rating{
+    font-size: 25px;
+    margin-left: 20px;
+}
+
+/* -------------GENEROS------------- */
+.contenedor-detalle-generos{
+    display: flex;
+    align-items: baseline;
+    border: greenyellow 4px solid;
+    border-radius: 20px;
+    width: 300px;
+    backdrop-filter: blur(10px);
+    margin: 10px;
+}
+.detalle-generos-titulo{
+    margin-left: 20px;
+}
+.detalle-generos{
+    font-size: 25px;
+    margin-left: 20px;
 }
 
 
-/* IMAGEN */
-.imgDetalle{
-    position: relative;
-    top:100px;
-    left: 900px;
-    border: red 5px solid;
-    border-radius: 30px;
-    height: 300px;
-    width: 600px;
-    object-fit: cover;
+/* -------------DESCRIPCION------------- */
+.contenedor-detalle-descripcion{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    border: red 4px solid;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    width: 1400px;
+    margin: 10px;
+}
+.detalle-descripcion-titulo{
+    margin-left: 20px;
+}
+.detalle-descripcion{
+    font-size: 20px;
+    margin-left: 20px;
+}
+
+
+/* -------------IMAGEN------------- */
+
+.contenedor-detalle-imagen{
+    overflow: hidden;
+    height: 380px;
+    width: fit-content;
+}
+.detalle-imagen{
+    border: yellow 4px solid;
+    border-radius: 20px;
+    max-width: 540px;
+    margin-top: 10px;
+    margin-left: 20px;   
+
+}
+
+/* SUBCONTENEDORES */
+
+.subcontenedor-1-detalle{
+    display: flex;
+    flex-direction: column;
+    margin-left: 280px;
+}
+.subcontenedor-3-detalle{
+    display: flex;
+    flex-direction: column;
+    height: 380px;
+    width: 300px;
 }

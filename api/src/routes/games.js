@@ -32,7 +32,7 @@ router.get("/", async (req, res) => {
         where: {
           name: name,
         },
-        attributes: ["name", "image"],
+        attributes: ["name", "image", "id"],
         include: Gender,
       });
 
@@ -66,9 +66,15 @@ router.get("/", async (req, res) => {
       const filteredGames = apiVideoGames.filter((e) =>
         e.genres?.some((genero) => genero.name === genresName)
       );
-      const dataBaseVideoGames = [];
+      const dataBaseVideoGames = await Videogame.findAll({
+        include: Gender,
+      });
+      const filteredGamesDB = dataBaseVideoGames.filter((e) => {
+        const objeto = e?.genres?.filter((f) => f.name === genresName);
+        return objeto?.length > 0;
+      });
 
-      const allVideogames = [...filteredGames, ...dataBaseVideoGames];
+      const allVideogames = [...filteredGames, ...filteredGamesDB];
       // res.send(filteredGames);
       // prettier-ignore
       res.send(
@@ -82,7 +88,7 @@ router.get("/", async (req, res) => {
       );
     } else {
       const dataBaseVideoGames = await Videogame.findAll({
-        attributes: ["name", "image"],
+        attributes: ["name", "image", "id"],
         include: Gender,
       });
 
@@ -124,19 +130,32 @@ router.get("/:idVideogame", async (req, res) => {
   try {
     const { idVideogame } = req.params;
 
-    const response = await axios.get(
-      `https://api.rawg.io/api/games/${idVideogame}?key=${APIKEY}`
-    );
-
-    const gameSelected = response.data;
-
     const dataBaseVideoGames = await Videogame.findByPk(idVideogame, {
-      attributes: ["id", "name", "rating", "description", "image"],
+      attributes: [
+        "id",
+        "name",
+        "rating",
+        "description",
+        "image",
+        "released",
+        "platform",
+      ],
       include: Gender,
     });
 
+    const response =
+      !dataBaseVideoGames &&
+      (await axios.get(
+        `https://api.rawg.io/api/games/${Number(idVideogame)}?key=${APIKEY}`
+      ));
+
+    const gameSelected = response.data;
+
+    console.log("gsihdgsd", gameSelected);
+
     res.send(
-      gameSelected.detail === "Not found." ? [dataBaseVideoGames] : gameSelected
+      gameSelected || dataBaseVideoGames
+      // .length > 0 ? [dataBaseVideoGames]
     );
   } catch (error) {
     console.error(error);
@@ -163,7 +182,7 @@ router.post("/", async function (req, res) {
     res.json(juegos);
   } catch (error) {
     console.error(error);
-    res.status(500).send("An error occurred");
+    res.status(500).send("El juego ya existe");
   }
 });
 

@@ -8,4 +8,5 @@ export const GET_BUSQUEDA = "GET_BUSQUEDA";
 //FILTROS
 export const FILTER_GENRES = "FILTER_GENRES";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
-export const FILTER_BY_CREATER = "ORDER_BY_CREATER";
+export const ORDER_BY_RATING = "ORDER_BY_RATING";
+export const RESET = "RESET";

@@ -5,8 +5,9 @@ import {
   GET_BUSQUEDA,
   GET_DETAIL,
   GET_GENRES,
-  FILTER_BY_CREATER,
+  ORDER_BY_RATING,
   ORDER_BY_NAME,
+  RESET,
 } from "../Actions/actions_type";
 
 // --------------------------------------------GETS GAMES--------------------------------------------
@@ -80,8 +81,16 @@ export function orderByName(modo) {
   };
 }
 
+export function orderByRating(modo) {
+  return function (dispatch) {
+    dispatch({
+      type: ORDER_BY_RATING,
+      payload: modo,
+    });
+  };
+}
+
 export function filterByGenres(genresName) {
-  console.log("Action", genresName);
   return async function (dispatch) {
     const response = await axios.get(
       `http://localhost:3001/videogames?genresName=${genresName}`
@@ -92,3 +101,12 @@ export function filterByGenres(genresName) {
     });
   };
 }
+
+// export function resetFilters(modo) {
+//   return async function (dispatch) {
+//     dispatch({
+//       type: RESET,
+//       payload: modo,
+//     });
+//   };
+// }

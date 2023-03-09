@@ -4,69 +4,105 @@ import { useParams } from "react-router-dom";
 import { getDetail } from "../../Redux/Actions/actions";
 import "../Detail/Detail.css";
 
-function Detail(props) {
-  const { getDetail, videojuego } = props;
+function Detail({ getDetail, videojuego }, props) {
+  // const { getDetail } = props;
   const { idVideojuegos } = useParams();
 
   useEffect(() => {
     getDetail(idVideojuegos);
+
     // console.log(videojuego?.genres.name);
   }, []);
 
-  useEffect(() => {
-    // console.log(props);
-  }, [props]);
+  // useEffect(() => {
+  //   console.log(props);
+  // }, [props]);
 
+  console.log(videojuego);
   return (
     /*----------------------------CONTENEDOR GENERAL----------------------------*/
-    <div className="contenedor-general-detalle">
+    <div className="detalle-fondo">
       {/*----------------------------CONTENEDOR DETALLE---------------------------- */}
       {videojuego && (
-        <>
-          <div className="contenedor-textos">
-            <div className="contenedor-titulo">
-              <h1 className="titulo-detalle">Nombre: </h1>
-              <p className="nombre-detalle">{videojuego?.name}</p>
+        <div className="contenedor-detalle-general">
+          {/* ----------------------------IMAGEN---------------------------- */}
+          <div className="subcontenedor-3-detalle">
+            <div className="contenedor-detalle-imagen">
+              <img
+                className="detalle-imagen"
+                src={videojuego?.background_image || videojuego.image}
+              />
             </div>
-            <div className="contenedor-plataformas">
-              <h1 className="titulo-detalle">Plataformas: </h1>
-              <div className="plataformas-detalle">
-                {videojuego?.platforms &&
-                  videojuego?.platforms.map((plataforma, i) => (
-                    <p className="plataforma" key={i}>
-                      {plataforma.platform.name},{" "}
-                    </p>
-                  ))}
+          </div>
+          <div className="subcontenedor-1-detalle">
+            {/* ----------------------------NOMBRE----------------------------  */}
+            <div className="contenedor-detalle-nombre">
+              <div className="detalle-nombre-titulo">
+                <h1>Nombre: </h1>
+              </div>
+              <div className="detalle-nombre">
+                <p>{videojuego?.name}</p>
               </div>
             </div>
-            <div className="contenedor-rating">
-              <h1 className="titulo-detalle">Rating: </h1>
-              <p className="nombre-detalle">{videojuego?.rating}</p>
+            {/* ----------------------------RATING---------------------------- */}
+            <div className="contenedor-detalle-rating">
+              <div className="detalle-rating-titulo">
+                <h1>Rating: </h1>
+              </div>
+              <div className="detalle-rating">
+                <p>{videojuego?.rating || props.rating}</p>
+              </div>
             </div>
-            <div className="contenedor-generos">
-              <h1 className="titulo-detalle">Géneros: </h1>
-              <div className="generos-detalle">
-                {videojuego?.genres &&
+          </div>
+          {/* ----------------------------GENEROS---------------------------- */}
+          <div className="subcontenedor-2-detalle">
+            <div className="contenedor-detalle-generos">
+              <div className="detalle-generos-titulo">
+                <h1>Géneros: </h1>
+              </div>
+              <div className="detalle-generos">
+                {(videojuego?.genres &&
                   videojuego?.genres.map((genero, i) => (
-                    <p clasname="nombre-detalle" key={i}>
-                      {genero.name},
-                    </p>
-                  ))}
+                    <p key={i}>{genero.name},</p>
+                  ))) ||
+                  (videojuego?.genders &&
+                    videojuego?.genders.map((genero, i) => (
+                      <p key={i}>{genero.name},</p>
+                    )))}
               </div>
             </div>
-            <div className="contenedor-descripcion">
-              <h1 className="titulo-detalle">Descripcion: </h1>
-              <p clasname="nombre-detalle">
+          </div>
+          {/* ----------------------------PLATAFORMAS---------------------------- */}
+          <div className="subcontenedor-4-detalle"></div>
+          {/* ----------------------------DESCRIPCION---------------------------- */}
+          <div className="contenedor-detalle-descripcion">
+            <div className="detalle-descripcion-titulo">
+              <h1>Descripcion: </h1>
+            </div>
+            <div className="detalle-descripcion">
+              <p>
                 <div
-                  dangerouslySetInnerHTML={{ __html: videojuego?.description }}
+                  dangerouslySetInnerHTML={{
+                    __html: videojuego?.description,
+                  }}
                 />
               </p>
             </div>
+            <div className="detalle-plataformas-titulo">
+              <h1>Plataformas: </h1>
+            </div>
+            <div className="detalle-plataformas">
+              {(videojuego?.platforms &&
+                videojuego?.platforms.map((plataforma, i) => (
+                  <p key={i}>{plataforma || plataforma.platform.name},&nbsp;</p>
+                ))) ||
+                (videojuego?.platform &&
+                  videojuego?.platform.map((plataforma, i) => (
+                    <p key={i}>{plataforma},</p>
+                  )))}
+            </div>
           </div>
-          <div className="contenedor-imagen">
-            <img className="imgDetalle" src={videojuego?.background_image} />
-          </div>
-        </>
+        </div>
       )}
     </div>
   );

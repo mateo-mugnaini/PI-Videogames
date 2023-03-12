@@ -65,15 +65,16 @@ export default function Cards() {
       {/* ------------------------------CARTAS------------------------------ */}
       <div className="contenedor-cards">
         {game.length > 0 &&
-          game.map((e) => {
+          game?.map((e) => {
             const gamesArray = [];
+            console.log(e);
             e.genres?.map((el) => gamesArray.push(el.name));
             e.genders?.map((el) => gamesArray.push(el.name));
             return (
               <Card
                 key={e.id}
                 id={e.id}
-                nombre={e.name}
+                nombre={e?.name}
                 background_image={e.background_image || e.image}
                 generos={gamesArray.length > 0 && gamesArray.join(", ")}
               />

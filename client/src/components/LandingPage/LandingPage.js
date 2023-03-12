@@ -11,7 +11,7 @@ export default function LandingPage() {
       <div className="container-Textos">
         <div className="btn">
           <Link className="botonIngreso" to={"/home"}>
-            <h1> start </h1>
+            <h1 className="start">START</h1>
           </Link>
         </div>
         <div className="texto-Landing">

@@ -69,7 +69,7 @@ function Filter(props) {
           <option value="Z-A">Z-A</option>
         </select>
       </div>
-      {/* --------------------ORDENAR RATING--------------------*/}"{" "}
+      {/* --------------------ORDENAR RATING--------------------*/}
       <div className="name-filter">
         <select
           className="filtro"

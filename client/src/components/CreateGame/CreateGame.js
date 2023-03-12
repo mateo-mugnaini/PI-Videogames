@@ -102,7 +102,7 @@ function CreateGame(props) {
       (el) => el.id.toString() !== e.target.value
     );
 
-    console.log(generosNuevos);
+    console.log(e.target.value);
 
     setGeneros(generosNuevos);
   }
@@ -118,6 +118,7 @@ function CreateGame(props) {
     });
     const deletedGenre = props.genres.filter((el) => el.name === e.target.name);
     setGeneros([...generos, ...deletedGenre]);
+    console.log(deletedGenre, deleteGenres, "AAAA");
   }
 
   const inputImagen = document.getElementById("imagen");
@@ -140,26 +141,11 @@ function CreateGame(props) {
   async function onSubmit(e) {
     e.preventDefault();
 
-    const keys = Object.keys(inputs);
-
-    // console.log("keys", keys);
-    // keys.map((key) => {
-    //   // console.log("inputs value", inputs[key] !== "", key);
-    //   if (inputs[key] !== "") {
-    //     console.log(key);
-    //     setErrors({
-    //       ...errors,
-    //       [key]: false,
-    //     });
-    //   }
-    // });
-
-    // console.log(errors);
-    if (!inputs.nombre) {
+    if (!inputs.name) {
       return window.alert("El campo 'nombre' está vacío");
     }
 
-    if (!inputs.imagen) {
+    if (!inputs.image) {
       return window.alert("El campo 'imagen' está vacío");
     }
 
@@ -167,7 +153,7 @@ function CreateGame(props) {
       return window.alert("El campo 'descripcion' está vacío");
     }
 
-    if (!inputs.fechaDeLanzamiento) {
+    if (!inputs.released) {
       return window.alert("El campo 'fechaDeLanzamiento' está vacío");
     }
 
@@ -183,35 +169,6 @@ function CreateGame(props) {
       return window.alert("Debe seleccionar al menos un género");
     }
 
-    /* if (inputs.nombre) {
-      // return window.alert("El campo 'nombre' está vacío");
-      setErrors({ ...errors, nombre: false });
-    }
-
-    if (inputs.imagen) {
-      // return window.alert("El campo 'imagen' está vacío");
-      setErrors({ ...errors, imagen: false });
-    }
-    if (inputs.descripcion) {
-      // return window.alert("El campo 'descripcion' está vacío");
-      setErrors({ ...errors, descripcion: false });
-    }
-    if (inputs.platforms.length < 1) {
-      // return window.alert("El campo 'plataformas' está vacío");
-      setErrors({ ...errors, platforms: false });
-    }
-    if (inputs.fechaDeLanzamiento) {
-      // return window.alert("El campo 'fechaDeLanzamiento' está vacío");
-      setErrors({ ...errors, fechaDeLanzamiento: false });
-    }
-    if (inputs.rating) {
-      // return window.alert("El campo 'rating' está vacío");
-      setErrors({ ...errors, rating: false });
-    }
-    if (inputs.genres.length === 0) {
-      // return window.alert("Debe seleccionar al menos un género");
-      setErrors({ ...errors, genres: false });
-    }*/
     const formData = {
       name: inputs.name,
       image: inputs.image,
@@ -225,22 +182,6 @@ function CreateGame(props) {
     window.alert("El juego ha sido creado con éxito!!");
     window.location.href = "http://localhost:3000/home";
   }
-
-  /*   if (false) {
-     const formData = {
-      name: inputs.nombre,
-      image: inputs.imagen,
-description: inputs.descripcion,
-        released: inputs.fechaDeLanzamiento,
-       rating: inputs.rating,
-        platform: inputs.platforms,
-        gender: inputs.genres,
-      };
-       await axios.post("http://localhost:3001/videogames", formData);
-      window.alert("El juego ha sido creado con éxito!!");
-       window.location.href = "http://localhost:3000/home";
-     }
-  / }*/
 
   /* ----------------------------------RETURN---------------------------------- */
   return (
@@ -266,17 +207,12 @@ description: inputs.descripcion,
           <div className="formulario-fondo">
             {/* ----------------------------------NOMBRE---------------------------------- */}
             <div className="formulario">
-              {!inputs.nombre && (
-                <label className="error">
-                  El campo 'nombre' contiene un error
-                </label>
-              )}
               <label className="formulario-label"> Nombre: </label>
               <input
                 className="input-marco"
                 placeholder="Nombre del juego"
-                name="nombre"
-                value={inputs.nombre}
+                name="name"
+                value={inputs.name}
                 onChange={(e) => handleChange(e)}
               />
             </div>
@@ -286,9 +222,9 @@ description: inputs.descripcion,
               <input
                 className="input-marco"
                 placeholder="Inserte link de imagen"
-                name="imagen"
+                name="image"
                 type="text"
-                id="imagen"
+                id="image"
                 onChange={(e) => handleChange(e)}
               />
             </div>
@@ -324,7 +260,7 @@ description: inputs.descripcion,
               <label className="formulario-label">Fecha de lanzamiento:</label>
               <input
                 className="input-marco"
-                name="fechaDeLanzamiento"
+                name="released"
                 type="date"
                 onChange={(e) => handleChange(e)}
               />
@@ -369,12 +305,12 @@ description: inputs.descripcion,
             {/* ----------------------------------VISTA PREVIA IMAGEN---------------------------------- */}
             <img
               className="vistaprevia-imagen"
-              src=""
-              id="vista-previa"
+              src={inputs.image}
+              id="image"
               alt="Vista previa de la imagen"
             />
             {/* ----------------------------------VISTA PREVIA NOMBRE---------------------------------- */}
-            <h2 className="vistaprevia-nombre">{inputs.nombre}</h2>
+            <h2 className="vistaprevia-nombre">{inputs.name}</h2>
             {/* ----------------------------------VISTA PREVIA GENEROS---------------------------------- */}
             <h2 className="vistaprevia-generos">
               {inputs?.genreName.join(", ")}

@@ -18,7 +18,7 @@ export function getGames(type = "All") {
     );
     dispatch({
       type: GET_GAMES,
-      payload: response.data.slice(0, 100),
+      payload: response.data,
     });
   };
 }
@@ -54,8 +54,9 @@ export function getDetail(idVideogame) {
     );
     dispatch({
       type: GET_DETAIL,
-      payload: response.data,
+      payload: [response.data],
     });
+    console.log(response.data);
   };
 }
 

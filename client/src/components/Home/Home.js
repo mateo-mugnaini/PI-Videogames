@@ -24,7 +24,6 @@ function Home(props) {
 
 function mapStateToProps(state) {
   return {
-    videogames: state?.videogames,
     filtered: state?.filtered,
   };
 }

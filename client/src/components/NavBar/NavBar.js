@@ -8,13 +8,13 @@ export default function NavBar() {
     <nav className="nav">
       <div className="contenedor-navbar">
         <div className="div-Btn-NV">
-          <Link className="btn-NV" to="/home">
+          <Link className="btn-NV-home" to="/home">
             <p> Home </p>
           </Link>
         </div>
         <div className="boton-aboutme">
           <div className="div-Btn-NV">
-            <Link className="btn-NV" to="/about">
+            <Link className="btn-NV-about" to="/about">
               <p> About </p>
             </Link>
             {/* <a
@@ -31,7 +31,7 @@ export default function NavBar() {
           <Searchbar />
         </div>
         <div className="div-Btn-NV">
-          <Link className="btn-NV" to="/gamecreate">
+          <Link className="btn-NV-creategame" to="/gamecreate">
             <p> Create Game </p>
           </Link>
         </div>

@@ -9,7 +9,23 @@
     background: linear-gradient(180deg, rgb(0, 0, 0), transparent);
 }
 
-.btn-NV{
+.btn-NV-home{
+    text-decoration: none;
+    color: azure;
+    font-size: 20px;
+    font-family: "Press Start 2P";
+    position: relative;
+    top: 12px;
+}
+.btn-NV-about{
+    text-decoration: none;
+    color: azure;
+    font-size: 20px;
+    font-family: "Press Start 2P";
+    position: relative;
+    top: 12px;
+}
+.btn-NV-creategame{
     text-decoration: none;
     color: azure;
     font-size: 20px;
@@ -29,4 +45,13 @@
 
 .btn-NV-Exit:hover{
     color: red;
+}
+.btn-NV-creategame:hover{
+    color: greenyellow;
+}
+.btn-NV-about:hover{
+    color: blue;
+}
+.btn-NV-home:hover{
+    color: yellow;
 }

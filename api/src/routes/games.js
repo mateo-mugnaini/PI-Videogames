@@ -107,7 +107,7 @@ router.get("/", async (req, res) => {
         ...responses[0].data.results,
         ...responses[1].data.results,
         ...responses[2].data.results,
-      ];
+      ].slice(0, 100);
 
       const allVideogames = [...apiVideoGames, ...dataBaseVideoGames];
       // res.send(allVideogames);

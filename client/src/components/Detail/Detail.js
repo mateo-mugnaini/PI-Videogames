@@ -23,14 +23,14 @@ function Detail({ getDetail, videojuego }, props) {
     /*----------------------------CONTENEDOR GENERAL----------------------------*/
     <div className="detalle-fondo">
       {/*----------------------------CONTENEDOR DETALLE---------------------------- */}
-      {videojuego && (
+      {videojuego[0] && (
         <div className="contenedor-detalle-general">
           {/* ----------------------------IMAGEN---------------------------- */}
           <div className="subcontenedor-3-detalle">
             <div className="contenedor-detalle-imagen">
               <img
                 className="detalle-imagen"
-                src={videojuego?.background_image || videojuego.image}
+                src={videojuego[0]?.background_image || videojuego[0].image}
               />
             </div>
           </div>
@@ -41,7 +41,7 @@ function Detail({ getDetail, videojuego }, props) {
                 <h1>Nombre: </h1>
               </div>
               <div className="detalle-nombre">
-                <p>{videojuego?.name}</p>
+                <p>{videojuego[0]?.name}</p>
               </div>
             </div>
             {/* ----------------------------RATING---------------------------- */}
@@ -50,7 +50,7 @@ function Detail({ getDetail, videojuego }, props) {
                 <h1>Rating: </h1>
               </div>
               <div className="detalle-rating">
-                <p>{videojuego?.rating || props.rating}</p>
+                <p>{videojuego[0]?.rating || props.rating}</p>
               </div>
             </div>
           </div>
@@ -61,12 +61,12 @@ function Detail({ getDetail, videojuego }, props) {
                 <h1>Géneros: </h1>
               </div>
               <div className="detalle-generos">
-                {(videojuego?.genres &&
-                  videojuego?.genres.map((genero, i) => (
+                {(videojuego[0]?.genres &&
+                  videojuego[0]?.genres.map((genero, i) => (
                     <p key={i}>{genero.name},</p>
                   ))) ||
-                  (videojuego?.genders &&
-                    videojuego?.genders.map((genero, i) => (
+                  (videojuego[0]?.genders &&
+                    videojuego[0]?.genders.map((genero, i) => (
                       <p key={i}>{genero.name},</p>
                     )))}
               </div>
@@ -83,7 +83,7 @@ function Detail({ getDetail, videojuego }, props) {
               <p>
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: videojuego?.description,
+                    __html: videojuego[0]?.description,
                   }}
                 />
               </p>
@@ -92,12 +92,12 @@ function Detail({ getDetail, videojuego }, props) {
               <h1>Plataformas: </h1>
             </div>
             <div className="detalle-plataformas">
-              {(videojuego?.platforms &&
-                videojuego?.platforms.map((plataforma, i) => (
-                  <p key={i}>{plataforma || plataforma.platform.name},&nbsp;</p>
+              {(videojuego[0]?.platforms &&
+                videojuego[0]?.platforms.map((plataforma, i) => (
+                  <p key={i}>{plataforma.platform.name},&nbsp;</p>
                 ))) ||
-                (videojuego?.platform &&
-                  videojuego?.platform.map((plataforma, i) => (
+                (videojuego[0]?.platform &&
+                  videojuego[0]?.platform.map((plataforma, i) => (
                     <p key={i}>{plataforma},</p>
                   )))}
             </div>

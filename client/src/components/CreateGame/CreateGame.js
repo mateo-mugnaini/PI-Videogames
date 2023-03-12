@@ -112,14 +112,19 @@ function CreateGame(props) {
   function handleDeleteGenres(e) {
     e.preventDefault();
     const deleteGenres = inputs.genreName.filter((c) => c !== e.target.name);
+
+    const deletedGenre = props.genres.filter((el) => el.name === e.target.name);
+    setGeneros([...generos, ...deletedGenre]);
+    const ASD = inputs.genres.filter((e) => e.id !== deletedGenre.id);
     setInputs({
       ...inputs,
       genreName: deleteGenres,
+      genres: inputs.genres.filter((e) => Number(e) !== deletedGenre[0].id),
     });
-    const deletedGenre = props.genres.filter((el) => el.name === e.target.name);
-    setGeneros([...generos, ...deletedGenre]);
-    console.log(deletedGenre, deleteGenres, "AAAA");
   }
+  useEffect(() => {
+    console.log("inp", inputs.genres);
+  }, [inputs.genres]);
 
   const inputImagen = document.getElementById("imagen");
   const vistaPrevia = document.getElementById("vista-previa");

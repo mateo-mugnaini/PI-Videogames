@@ -3,7 +3,7 @@
 .contenedor-general-formulario{
     background-image: url(https://www.xtrafondos.com/descargar.php?id=8359&resolucion=1920x1080);
     background-attachment: fixed;
-    height: 120vh;
+    height: 140vh;
     color:aliceblue;
     display: flex;
     flex-direction: column;
@@ -48,7 +48,7 @@
     align-items: center;
     position: absolute;
     right: 240px;
-    bottom: 80px;
+    bottom: 70px;
 }
 
 .formulario-label{
@@ -93,8 +93,8 @@
     width: 450px;
     height: 200px;
     position: absolute;
-    left: 640px;
-    top: 650px;
+    left: 630px;
+    top: 350px;
     flex-direction: column;
     align-content: space-around;
     align-items: center;
@@ -143,8 +143,8 @@
     width: 450px;
     height: 200px;
     position: absolute;
-    left: 640px;
-    top: 400px;
+    left: 630px;
+    top: 650px;
     flex-direction: column;
     align-content: space-around;
     align-items: center;
@@ -166,8 +166,8 @@
 
 .vistaprevia{
     position: absolute;
-    top: 420px;
-    left: 1200px;
+    top: 400px;
+    left: 1150px;
     height: 400px;
     width: 300px;
     background-color: rgba(130, 130, 148, 0.733);

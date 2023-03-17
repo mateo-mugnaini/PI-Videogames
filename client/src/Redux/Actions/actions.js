@@ -7,7 +7,7 @@ import {
   GET_GENRES,
   ORDER_BY_RATING,
   ORDER_BY_NAME,
-  RESET,
+  // RESET,
 } from "../Actions/actions_type";
 
 // --------------------------------------------GETS GAMES--------------------------------------------
@@ -56,7 +56,7 @@ export function getDetail(idVideogame) {
       type: GET_DETAIL,
       payload: [response.data],
     });
-    console.log(response.data);
+    // console.log(response.data);
   };
 }
 
@@ -103,11 +103,13 @@ export function filterByGenres(genresName) {
   };
 }
 
-// export function resetFilters(modo) {
-//   return async function (dispatch) {
-//     dispatch({
-//       type: RESET,
-//       payload: modo,
-//     });
-//   };
-// }
+/*
+export function resetFilters(modo) {
+  return async function (dispatch) {
+    dispatch({
+      type: RESET,
+      payload: modo,
+    });
+  };
+}
+*/

@@ -16,12 +16,18 @@ export default function About() {
                 <p className="texto-about">
                   Este proyecto es parte del bootcamp de Full Stack Developer de
                   Soy Henry, esta single page aplicacion(SPA) consume datos de
-                  la api de videojuegos. En esta aplicacion vas a poder crear un
-                  nuevo videojuego, ordenarlos albafeticamente,por genero y
-                  filtrar entre todos los juegos, los traidos por la API o los
-                  que vos creates. Si tienes alguna recomendacion de como
-                  mejorar esta aplicación no dudes en hacermelo saber por MD en
-                  mi LinkedIn (Link al final)
+                  la api de videojuegos. <br />
+                  En esta aplicacion vas a poder: <br />
+                  <ul>
+                    <li>Crear un nuevo videojuego.</li>
+                    <li>Ordenarlos albafeticamente y por rating.</li>
+                    <li>
+                      Filtrar por genero y entre todos los juegos, los traidos
+                      por la API o los que vos creaste.
+                    </li>
+                  </ul>
+                  Si tienes alguna recomendacion de como mejorar esta aplicación
+                  no dudes en hacermelo saber por MD en mis redes
                 </p>
               </div>
             </div>

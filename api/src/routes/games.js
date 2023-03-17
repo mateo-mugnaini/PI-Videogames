@@ -151,12 +151,9 @@ router.get("/:idVideogame", async (req, res) => {
 
     const gameSelected = response.data;
 
-    console.log("gsihdgsd", gameSelected);
+    // console.log("gsihdgsd", gameSelected);
 
-    res.send(
-      gameSelected || dataBaseVideoGames
-      // .length > 0 ? [dataBaseVideoGames]
-    );
+    res.send(gameSelected || dataBaseVideoGames);
   } catch (error) {
     console.error(error);
     res.status(500).send("El id no existe");

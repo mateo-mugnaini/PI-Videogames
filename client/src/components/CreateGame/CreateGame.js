@@ -77,7 +77,7 @@ function CreateGame(props) {
       platforms: deletePlatforms,
     });
     const deletedPlatform = platformList.filter((el) => el === e.target.name);
-    console.log(e.target.name, deletedPlatform);
+    // console.log(e.target.name, deletedPlatform);
     setPlataformas([...plataformas, ...deletedPlatform]);
   }
 
@@ -102,7 +102,7 @@ function CreateGame(props) {
       (el) => el.id.toString() !== e.target.value
     );
 
-    console.log(e.target.value);
+    // console.log(e.target.value);
 
     setGeneros(generosNuevos);
   }
@@ -123,7 +123,7 @@ function CreateGame(props) {
     });
   }
   useEffect(() => {
-    console.log("inp", inputs.genres);
+    // console.log("inp", inputs.genres);
   }, [inputs.genres]);
 
   const inputImagen = document.getElementById("imagen");
@@ -139,7 +139,7 @@ function CreateGame(props) {
       ...inputs,
       [e.target.name]: e.target.value,
     });
-    console.log(errors);
+    // console.log(errors);
   }
 
   /* ----------------------------------ON SUBMIT---------------------------------- */

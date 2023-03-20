@@ -26,8 +26,6 @@ export default function Cards() {
     paginas.push(i);
   }
 
-  // React.useEffect(() => console.log(games));
-
   return (
     /* ------------------------------CONTENEDOR GENERAL------------------------------ */
     <div className="contenedor-general-cards">
@@ -67,7 +65,6 @@ export default function Cards() {
         {game.length > 0 &&
           game?.map((e) => {
             const gamesArray = [];
-            // console.log(e);
             e.genres?.map((el) => gamesArray.push(el.name));
             e.genders?.map((el) => gamesArray.push(el.name));
             return (

@@ -47,6 +47,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         defaultValue: true,
       },
+      edad_min: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
     { timestamps: false }
   );

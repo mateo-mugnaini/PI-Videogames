@@ -10,11 +10,8 @@ function Detail({ getDetail, videojuego }, props) {
 
   useEffect(() => {
     getDetail(idVideojuegos);
-
-    // console.log(videojuego?.genres.name);
   }, []);
 
-  // console.log(videojuego);
   return (
     /*----------------------------CONTENEDOR GENERAL----------------------------*/
     <div className="detalle-fondo">

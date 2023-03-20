@@ -139,6 +139,7 @@ router.get("/:idVideogame", async (req, res) => {
         "image",
         "released",
         "platform",
+        "edad_min",
       ],
       include: Gender,
     });
@@ -151,8 +152,6 @@ router.get("/:idVideogame", async (req, res) => {
 
     const gameSelected = response.data;
 
-    // console.log("gsihdgsd", gameSelected);
-
     res.send(gameSelected || dataBaseVideoGames);
   } catch (error) {
     console.error(error);
@@ -162,8 +161,16 @@ router.get("/:idVideogame", async (req, res) => {
 
 router.post("/", async function (req, res) {
   try {
-    const { name, image, description, platform, released, rating, gender } =
-      req.body;
+    const {
+      name,
+      image,
+      description,
+      platform,
+      released,
+      rating,
+      gender,
+      edad_min,
+    } = req.body;
 
     const idFecha = new Date();
     const juegos = await Videogame.create({
@@ -174,6 +181,7 @@ router.post("/", async function (req, res) {
       released: released,
       rating: rating,
       id: idFecha.getTime(),
+      edad_min: edad_min,
     });
     await juegos.setGenders([...gender]);
     res.json(juegos);

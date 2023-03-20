@@ -56,7 +56,6 @@ export function getDetail(idVideogame) {
       type: GET_DETAIL,
       payload: [response.data],
     });
-    // console.log(response.data);
   };
 }
 

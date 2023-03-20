@@ -94,7 +94,7 @@
     height: 200px;
     position: absolute;
     left: 630px;
-    top: 350px;
+    top: 425px;
     flex-direction: column;
     align-content: space-around;
     align-items: center;
@@ -144,7 +144,7 @@
     height: 200px;
     position: absolute;
     left: 630px;
-    top: 650px;
+    top: 725px;
     flex-direction: column;
     align-content: space-around;
     align-items: center;
@@ -166,8 +166,8 @@
 
 .vistaprevia{
     position: absolute;
-    top: 400px;
-    left: 1150px;
+    top: 475px;
+    left: 1200px;
     height: 400px;
     width: 300px;
     background-color: rgba(130, 130, 148, 0.733);
